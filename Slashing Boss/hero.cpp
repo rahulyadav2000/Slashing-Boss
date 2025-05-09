@@ -72,6 +72,8 @@ void Hero::slash()
 		moving = false;
 		frameTimer = 0;
 		changeAnimation(States::SLASH, true);
+
+		SoundManager::soundManager.playSound("swing");
 	}
 }
 
@@ -86,6 +88,8 @@ void Hero::dash()
 		invincibleTimer = 0.1;
 
 		changeAnimation(States::DASH, true);
+
+		SoundManager::soundManager.playSound("dash");
 	}
 }
 
@@ -216,6 +220,7 @@ void Hero::updateDamages()
 					health -= enemy->damage;
 					if (health > 0)
 						invincibleTimer = 0.3;
+						SoundManager::soundManager.playSound("hit");
 
 					slideAngle = Entity::angleBwtTwoEntities((*e), this);
 					slideAmount = 200;
